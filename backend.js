@@ -9,6 +9,7 @@ const server = http.createServer(createServer);
 
 module.exports.createServer = createServer;
 module.exports.getFlickrPublicFeed = getFlickrPublicFeed;
+
 function createServer(req, res) {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
@@ -23,10 +24,7 @@ function createServer(req, res) {
     console.log('Public feed with query requested.');
     const tags = require('url').parse(req.url, true).query.tags;
     return getFlickrPublicFeed(tags).then(
-      (feed) => {
-        console.log("FEED:\n" + feed.toString());
-        res.end(JSON.stringify(feed));
-      }
+      (feed) => res.end(JSON.stringify(feed))
     );
   } else {
     res.end('Request not handled:\n' + requestURL);
@@ -38,7 +36,6 @@ server.listen(port, hostname, () => {
 });
 
 function getFlickrPublicFeed(tags) {
-  console.log("FOO");
   let Parser = require('rss-parser');
   let parser = new Parser();
 
