@@ -4,7 +4,9 @@
   "description": "",
   "main": "backend.js",
   "dependencies": {
-    "rss-parser": "^3.7.2",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "rss-parser": "^3.7.2"
   },
   "devDependencies": {},
   "scripts": {
